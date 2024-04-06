@@ -1,11 +1,6 @@
-﻿/* 
- 
-YOU ARE NOT ALLOWED TO MODIFY ANY FUNCTION DEFINIDTION's PROVIDED.
-WRITE YOUR CODE IN THE RESPECTIVE QUESTION FUNCTION BLOCK
-
-
-*/
-
+﻿using System;
+using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using System.Text;
 
 namespace ISM6225_Spring_2024_Assignment_2
@@ -15,53 +10,88 @@ namespace ISM6225_Spring_2024_Assignment_2
         static void Main(string[] args)
         {
             //Question 1:
-            Console.WriteLine("Question 1:");
+            /*Console.Write("Question 1 Example 1: ");
+            int[] nums11 = { 1, 1, 2 };
+            int numberOfUniqueNumbers11 = RemoveDuplicates(nums11);
+            Console.WriteLine($"Output: {numberOfUniqueNumbers11}, nums11 = [{string.Join(",", nums1)}]");*/ //This is the code for another example given
+            Console.Write("Question 1: ");
             int[] nums1 = { 0, 0, 1, 1, 1, 2, 2, 3, 3, 4 };
             int numberOfUniqueNumbers = RemoveDuplicates(nums1);
-            Console.WriteLine(numberOfUniqueNumbers);
+            Console.WriteLine($"Output: {numberOfUniqueNumbers}, nums = [{string.Join(",", nums1)}]");
 
             //Question 2:
-            Console.WriteLine("Question 2:");
+            Console.Write("Question 2: ");
             int[] nums2 = { 0, 1, 0, 3, 12 };
             IList<int> resultAfterMovingZero = MoveZeroes(nums2);
             string combinationsString = ConvertIListToArray(resultAfterMovingZero);
             Console.WriteLine(combinationsString);
+            /*Console.Write("Question 2 Example 2: ");
+            int[] nums22 = { 0 };
+            IList<int> resultAfterMovingZero22 = MoveZeroes(nums22);
+            string combinationsString22 = ConvertIListToArray(resultAfterMovingZero22);
+            Console.WriteLine(combinationsString22);*/ //This is the code for another example given
 
             //Question 3:
-            Console.WriteLine("Question 3:");
+            Console.Write("Question 3: ");
             int[] nums3 = { -1, 0, 1, 2, -1, -4 };
             IList<IList<int>> triplets = ThreeSum(nums3);
             string tripletResult = ConvertIListToNestedList(triplets);
             Console.WriteLine(tripletResult);
+            /*Console.Write("Question 3 Example 2: ");
+            int[] nums32 = {  0, 1, 1 };
+            IList<IList<int>> triplets32 = ThreeSum(nums32);
+            string tripletResult32 = ConvertIListToNestedList(triplets32);
+            Console.WriteLine(tripletResult32); //This is the code for another example given
+
+            Console.Write("Question 3 Example 3: ");
+            int[] nums33 = { 0, 0, 0 };
+            IList<IList<int>> triplets33 = ThreeSum(nums33);
+            string tripletResult33 = ConvertIListToNestedList(triplets33);
+            Console.WriteLine(tripletResult33);*/ //This is the code for another example given
 
             //Question 4:
-            Console.WriteLine("Question 4:");
+            Console.Write("Question 4: ");
             int[] nums4 = { 1, 1, 0, 1, 1, 1 };
             int maxOnes = FindMaxConsecutiveOnes(nums4);
             Console.WriteLine(maxOnes);
+            /*Console.Write("Question 4 Example 2: ");
+            int[] nums42 = { 1, 0, 1, 1, 0, 1 };
+            int maxOnes42 = FindMaxConsecutiveOnes(nums42);
+            Console.WriteLine(maxOnes42);*/ //This is the code for another example given
 
             //Question 5:
-            Console.WriteLine("Question 5:");
+            Console.Write("Question 5: ");
             int binaryInput = 101010;
             int decimalResult = BinaryToDecimal(binaryInput);
             Console.WriteLine(decimalResult);
 
             //Question 6:
-            Console.WriteLine("Question 6:");
-            int[] nums5 = { 3,6,9,1 };
+            Console.Write("Question 6: ");
+            int[] nums5 = { 3, 6, 9, 1 };
             int maxGap = MaximumGap(nums5);
             Console.WriteLine(maxGap);
+            /*Console.Write("Question 6 Example 2: ");
+            int[] nums52 = { 10 };
+            int maxGap52 = MaximumGap(nums52);
+            Console.WriteLine(maxGap52);*/ //This is the code for another example given
 
             //Question 7:
-            Console.WriteLine("Question 7:");
-            int[] nums6 = { 2,1,2 };
+            Console.Write("Question 7: ");
+            int[] nums6 = { 2, 1, 2 };
             int largestPerimeterResult = LargestPerimeter(nums6);
             Console.WriteLine(largestPerimeterResult);
+            /*Console.Write("Question 7 Example 2: ");
+            int[] nums62 = { 1, 2, 1, 10 };
+            int largestPerimeterResult62 = LargestPerimeter(nums62);
+            Console.WriteLine(largestPerimeterResult62);*/ //This is the code for another example given
 
             //Question 8:
-            Console.WriteLine("Question 8:");
+            Console.Write("Question 8: ");
             string result = RemoveOccurrences("daabcbaabcbc", "abc");
             Console.WriteLine(result);
+            /*Console.Write("Question 8 Example 2: ");
+            string result82 = RemoveOccurrences("axxxxyyyyb", "xy");
+            Console.WriteLine(result82);*/ //This is the code for another example given
         }
 
         /*
@@ -99,8 +129,22 @@ namespace ISM6225_Spring_2024_Assignment_2
         {
             try
             {
-                // Write your code here and you can modify the return value according to the requirements
-                return 0;
+                if (nums.Length == 0)
+                    return 0;// Return 0 if array is empty
+                int ptr = 0; // Pointer for unique elements
+                for (int i = 1; i < nums.Length; i++)// Iterate through the array starting from index 1
+                {
+                    if (nums[i] != nums[ptr])// If nums[i] is different from nums[ptr], copy nums[i] to the position of nums[ptr]
+                    {
+                        ptr++;// Increment pointer
+                        nums[ptr] = nums[i];// Copy nums[i] to nums[ptr]
+                    }
+                }
+                for (int i = ptr + 1; i < nums.Length; i++)
+                {
+                    nums[i] = -1;//After printing k value and array unique elements we are printing -1 after the all the unique numbers in an array are printed
+                }
+                return ptr + 1;
             }
             catch (Exception)
             {
@@ -134,8 +178,18 @@ namespace ISM6225_Spring_2024_Assignment_2
         {
             try
             {
-                // Write your code here and you can modify the return value according to the requirements
-                return new List<int>();
+                int lastNonZeroFoundAt = 0;
+                for (int i = 0; i < nums.Length; i++)
+                {
+                    if (nums[i] != 0) // Checking If nums[i] is non-zero
+                    {
+                        int temp = nums[i];// If condition is true then swap it with the element at lastNonZeroFoundAt and increment lastNonZeroFoundAt
+                        nums[i] = nums[lastNonZeroFoundAt];
+                        nums[lastNonZeroFoundAt] = temp;
+                        lastNonZeroFoundAt++;
+                    }
+                }
+                return nums;
             }
             catch (Exception)
             {
@@ -185,8 +239,35 @@ namespace ISM6225_Spring_2024_Assignment_2
         {
             try
             {
-                // Write your code here and you can modify the return value according to the requirements
-                return new List<IList<int>>();
+                IList<IList<int>> result = new List<IList<int>>();// Initialize list to store unique triplets
+                Array.Sort(nums);// Sort the array in non-decreasing order
+                for (int i = 0; i < nums.Length - 2; i++)
+                {
+                    if (i > 0 && nums[i] == nums[i - 1]) continue;// Skip duplicates to avoid duplicate triplets
+                    int left = i + 1;// Pointer for the element after nums[i]
+                    int right = nums.Length - 1;// Pointer for the last element
+                    while (left < right)
+                    {
+                        int sum = nums[i] + nums[left] + nums[right];// Calculate sum of current triplet
+                        if (sum == 0)
+                        {
+                            result.Add(new List<int> { nums[i], nums[left], nums[right] });
+                            while (left < right && nums[left] == nums[left + 1]) left++;// Skip duplicates for left and right pointers
+                            while (left < right && nums[right] == nums[right - 1]) right--;
+                            left++;// Move left pointer to find other triplets
+                            right--;// Move right pointer to find other triplets
+                        }
+                        else if (sum < 0)
+                        {
+                            left++;// Move left pointer to increase sum
+                        }
+                        else
+                        {
+                            right--;// Move right pointer to decrease sum
+                        }
+                    }
+                }
+                return result;
             }
             catch (Exception)
             {
@@ -220,8 +301,21 @@ namespace ISM6225_Spring_2024_Assignment_2
         {
             try
             {
-                // Write your code here and you can modify the return value according to the requirements
-                return 0;
+                int maxCount = 0;
+                int count = 0;
+                foreach (int num in nums)
+                {
+                    if (num == 1)
+                    {
+                        count++;
+                        maxCount = Math.Max(maxCount, count);
+                    }
+                    else
+                    {
+                        count = 0;
+                    }
+                }
+                return maxCount;
             }
             catch (Exception)
             {
@@ -256,8 +350,16 @@ namespace ISM6225_Spring_2024_Assignment_2
         {
             try
             {
-                // Write your code here and you can modify the return value according to the requirements
-                return 0;
+                int decimalNumber = 0;
+                int baseValue = 1;
+                while (binary > 0)
+                {
+                    int lastDigit = binary % 10;
+                    binary = binary / 10;
+                    decimalNumber += lastDigit * baseValue;
+                    baseValue *= 2;
+                }
+                return decimalNumber;
             }
             catch (Exception)
             {
@@ -294,8 +396,14 @@ namespace ISM6225_Spring_2024_Assignment_2
         {
             try
             {
-                // Write your code here and you can modify the return value according to the requirements
-                return 0;
+                if (nums.Length < 2) return 0;
+                Array.Sort(nums);
+                int maxGap = 0;
+                for (int i = 0; i < nums.Length - 1; i++)
+                {
+                    maxGap = Math.Max(maxGap, nums[i + 1] - nums[i]);
+                }
+                return maxGap;
             }
             catch (Exception)
             {
@@ -334,7 +442,14 @@ namespace ISM6225_Spring_2024_Assignment_2
         {
             try
             {
-                // Write your code here and you can modify the return value according to the requirements
+                Array.Sort(nums);
+                for (int i = nums.Length - 1; i >= 2; i--)
+                {
+                    if (nums[i - 2] + nums[i - 1] > nums[i])
+                    {
+                        return nums[i - 2] + nums[i - 1] + nums[i];
+                    }
+                }
                 return 0;
             }
             catch (Exception)
@@ -388,8 +503,12 @@ namespace ISM6225_Spring_2024_Assignment_2
         {
             try
             {
-                // Write your code here and you can modify the return value according to the requirements
-                return "";
+                while (s.Contains(part))
+                {
+                    int index = s.IndexOf(part);
+                    s = s.Remove(index, part.Length);
+                }
+                return s;
             }
             catch (Exception)
             {
